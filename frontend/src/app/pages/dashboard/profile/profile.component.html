@@ -1,0 +1,409 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Basic Details</strong>
+        </div>
+        <form class="form-horizontal" formGroup="basicDetailsForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label
+                  >Name<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        basicDetailsForm,
+                        'name',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                  ngModel = "data.name"
+                  />
+                  <!-- [class.is-invalid]="
+                    !Global.isInputValid(basicDetailsForm, 'name')
+                  " -->
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      basicDetailsForm,
+                      'name',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label
+                  >Email<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        basicDetailsForm,
+                        'email',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                  [class.is-invalid]="
+                    !Global.isInputValid(basicDetailsForm, 'email')
+                  "
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      basicDetailsForm,
+                      'email',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(basicDetailsForm, 'email', 'email')
+                  "
+                >
+                  <div>Please enter a valid email address</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label
+                  >Mobile<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        basicDetailsForm,
+                        'mobile',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="mobile"
+                  />
+                  <!-- [class.is-invalid]="
+                    !Global.isInputValid(basicDetailsForm, 'mobile')
+                  " -->
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      basicDetailsForm,
+                      'mobile',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(basicDetailsForm, 'mobile', [
+                      'pattern',
+                      'minlength',
+                      'maxlength'
+                    ])
+                  "
+                >
+                  <div>Please enter a valid mobile number</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card-footer">
+          <button
+            type="submit"
+            class="btn btn-sm btn-primary mx-1"
+            (click)="updateBasicDetails($event)"
+          >
+            <span class="indicator-label"
+              ><i class="fa fa-dot-circle-o"></i> Submit</span
+            >
+            <!-- <span class="indicator-progress"
+              >Please wait...
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span> -->
+          </button>
+          <button
+            type="submit"
+            class="btn btn-sm btn-danger mx-1"
+            (click)="fetchAccountDetails()"
+          >
+            <i class="fa fa-times"></i> Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Change Password</strong>
+        </div>
+        <form class="form-horizontal" formGroup="passwordForm">
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label
+                  >Current Password<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        passwordForm,
+                        'current_password',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+                <input
+                  type="password"
+                  formControlName="current_password"
+                  class="form-control"
+                  placeholder="Enter your current password"
+                  [class.is-invalid]="
+                    !Global.isInputValid(passwordForm, 'current_password')
+                  "
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'current_password',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'current_password',
+                      'minlength'
+                    )
+                  "
+                >
+                  <div>The password should be of minimum 8 characters</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'current_password',
+                      'maxlength'
+                    )
+                  "
+                >
+                  <div>The password should be of maximum 20 characters</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label
+                  >New Password<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        passwordForm,
+                        'new_password',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+                <input
+                  type="password"
+                  formControlName="new_password"
+                  class="form-control"
+                  placeholder="Enter new password"
+                  [class.is-invalid]="
+                    !Global.isInputValid(passwordForm, 'new_password')
+                  "
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password',
+                      'minlength'
+                    )
+                  "
+                >
+                  <div>The password should be of minimum 8 characters</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password',
+                      'maxlength'
+                    )
+                  "
+                >
+                  <div>The password should be of maximum 20 characters</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label
+                  >Re-enter New Password<span
+                    class="text-danger"
+                    *ngIf="
+                      Global.isInputRuleAvailable(
+                        passwordForm,
+                        'new_password_confirmation',
+                        'required'
+                      )
+                    "
+                    >&nbsp;*</span
+                  ></label
+                >
+                <input
+                  type="password"
+                  formControlName="new_password_confirmation"
+                  class="form-control"
+                  placeholder="Re-enter your new password"
+                  [class.is-invalid]="
+                    !Global.isInputValid(
+                      passwordForm,
+                      'new_password_confirmation'
+                    )
+                  "
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password_confirmation',
+                      'required'
+                    )
+                  "
+                >
+                  <div>This field is required</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password_confirmation',
+                      'minlength'
+                    )
+                  "
+                >
+                  <div>The password should be of minimum 8 characters</div>
+                </div>
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    !Global.isInputRuleValid(
+                      passwordForm,
+                      'new_password_confirmation',
+                      'maxlength'
+                    )
+                  "
+                >
+                  <div>The password should be of maximum 20 characters</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="card-footer">
+          <button
+            type="button"
+            (click)="updateAccountPassword($event)"
+            class="btn btn-sm btn-primary mx-1"
+          >
+            <span class="indicator-label"
+              ><i class="fa fa-dot-circle-o"></i> Submit</span
+            >
+            <!-- <span class="indicator-progress"
+              >Please wait...
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span> -->
+          </button>
+          <button
+            type="button"
+            (click)="Global.resetForm(passwordForm)"
+            class="btn btn-sm btn-danger mx-1"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

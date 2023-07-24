@@ -1,0 +1,138 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form formGroup="loginForm">
+                  <!-- <img src="assets/img/cyte-logo.svg" class="mb-2" /> -->
+                  <hr />
+
+                  <h1>Login</h1>
+                  <p class="text-muted">Sign In to Control Panel</p>
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="icon-user"></i
+                      ></span>
+                    </div>
+
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email Address"
+                      formControlName="email"
+                      [class.is-invalid]="
+                        !Global.isInputValid(loginForm, 'email')
+                      "
+                    />
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        !Global.isInputRuleValid(loginForm, 'email', 'required')
+                      "
+                    >
+                      <div>This field is required</div>
+                    </div>
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        !Global.isInputRuleValid(loginForm, 'email', 'email')
+                      "
+                    >
+                      <div>Please enter a valid email</div>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="icon-lock"></i
+                      ></span>
+                    </div>
+
+                    <input
+                      type="password"
+                      class="form-control"
+                      placeholder="Password"
+                      formControlName="password"
+                      [class.is-invalid]="
+                        !Global.isInputValid(loginForm, 'password')
+                      "
+                    />
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        !Global.isInputRuleValid(
+                          loginForm,
+                          'password',
+                          'required'
+                        )
+                      "
+                    >
+                      <div>This field is required</div>
+                    </div>
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        !Global.isInputRuleValid(
+                          loginForm,
+                          'password',
+                          'minlength'
+                        )
+                      "
+                    >
+                      <div>The password should be of minimum 8 characters</div>
+                    </div>
+
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        Global.isInputRuleValid(
+                          loginForm,
+                          'password',
+                          'maxlength'
+                        )
+                      "
+                    >
+                      <div>The password should be of maximum 20 characters</div>
+                    </div>
+                  </div>
+                </form>
+                <div class="row">
+                  <div class="col-6">
+                    <button
+                      type="submit"
+                      class="btn btn-primary px-4"
+                      (click)="login($event)"
+                    >
+                      <span class="indicator-label">Login</span>
+                      <!-- <span class="indicator-progress"
+                        >Please wait...
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2"
+                        ></span>
+                      </span> -->
+                    </button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button type="button" class="btn btn-link px-0">
+                      Forgot password?
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
